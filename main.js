@@ -28,6 +28,35 @@
 
         task_content_element.appendChild(task_input_element);
 
+        const task_action_el = document.createElement("div");
+        task_action_el.classList.add("actions");
+
+
+        const task_edit_el = document.createElement("button");
+        task_edit_el.classList.add("edit");
+        task_edit_el.innerHTML = "Edit";
+
+        const task_delete_el = document.createElement("button");
+        task_delete_el.classList.add("delete");
+        task_delete_el.innerHTML = "Delete";
+
         list_el.appendChild(task_element);
+        task_element.appendChild(task_action_el);
+        task_action_el.appendChild(task_edit_el);
+        task_action_el.appendChild(task_delete_el);
+
+        input.value = "";
+
+        task_edit_el.addEventListener('click', () => {
+            if (task_edit_el.innerText.toLowerCase() == "edit") {
+                task_input_element.removeAttribute('readonly');
+                task_input_element.focus();
+                task_edit_el.innerText = "Save";
+            }
+            else {
+                task_input_element.setAttribute("readonly", "readonly");
+                task_edit_el.innerText = "Edit";
+            }
+        });
     })
 })
